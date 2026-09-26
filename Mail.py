@@ -34,7 +34,7 @@ def generate_custom_wish(name, age):
     
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash", # Updated to correct production model identifier
+            model="gemini-3.8-flash", # Updated to correct production model identifier
             contents=prompt,
         )
         return response.text
