@@ -29,6 +29,7 @@ jobs:
         pip install jupyter nbconvert nbformat
         pip install ipynb-py-convert
         pip install pandas
+        mv Mail.py Mail.ipynb
         ipynb-py-convert Mail.ipynb ActualMail.ipynb
 
     # 4. Execute the Mail.ipynb notebook
