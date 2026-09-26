@@ -1,0 +1,49 @@
+name: Hourly Mail Notebook Run
+
+on:
+  schedule:
+    # Runs exactly once an hour, at the start of every hour
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allows you to manually trigger it from the Actions tab anytime
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout the repository
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    # 2. Set up the Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # 3. Install required packages
+    # Note: If your notebook needs extra packages (like bs4, requests, etc.), add them to the pip install line.
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jupyter nbconvert nbformat
+        pip install pandas
+
+    # 4. Execute the Mail.ipynb notebook
+    # If your email script requires passwords or API keys, inject them as environment variables here.
+    - name: Execute Mail Notebook
+      env:
+        # Example: EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        # (Uncomment the line above and replace EMAIL_PASSWORD with your actual GitHub Secret name if needed)
+        PLACEHOLDER: "delete_or_replace_me" 
+      run: |
+        jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
+
+    # 5. Commit and push the updated notebook back to the repository
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@://github.com"
+        git add Mail.ipynb
+        git commit -m "Automated hourly mail execution" || echo "No changes to commit"
+        git push
