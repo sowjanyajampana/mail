@@ -42,7 +42,7 @@ jobs:
         # (Uncomment the line above and replace EMAIL_PASSWORD with your actual GitHub Secret name if needed)
         PLACEHOLDER: "delete_or_replace_me" 
       run: |
-      jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
+        jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
     
       #jupyter nbconvert --to notebook --execute ActualMail.ipynb --output ActualMail.ipynb
 
