@@ -29,8 +29,10 @@ jobs:
         pip install jupyter nbconvert nbformat
         pip install ipynb-py-convert
         pip install pandas
-        mv Mail.py Mail.ipynb
-        ipynb-py-convert Mail.py ActualMail.ipynb
+        pip install jupytext
+        jupytext --to notebook Mail.ipynb
+        #mv Mail.py Mail.ipynb
+        ##ipynb-py-convert Mail.py ActualMail.ipynb
 
     # 4. Execute the Mail.ipynb notebook
     # If your email script requires passwords or API keys, inject them as environment variables here.
@@ -40,9 +42,11 @@ jobs:
         # (Uncomment the line above and replace EMAIL_PASSWORD with your actual GitHub Secret name if needed)
         PLACEHOLDER: "delete_or_replace_me" 
       run: |
-        jupyter nbconvert --to notebook --execute ActualMail.ipynb --output ActualMail.ipynb
+      jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
+    
+      #jupyter nbconvert --to notebook --execute ActualMail.ipynb --output ActualMail.ipynb
 
-       # jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
+      # jupyter nbconvert --to notebook --execute Mail.ipynb --output Mail.ipynb
 
     # 5. Commit and push the updated notebook back to the repository
     - name: Commit and Push Changes
