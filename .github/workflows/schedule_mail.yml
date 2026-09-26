@@ -3,7 +3,7 @@ name: Hourly Mail Notebook Run
 on:
   schedule:
     # Runs exactly once an hour, at the start of every hour
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch: # Allows you to manually trigger it from the Actions tab anytime
 
 jobs:
