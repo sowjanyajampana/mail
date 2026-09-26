@@ -30,7 +30,7 @@ jobs:
         pip install ipynb-py-convert
         pip install pandas
         mv Mail.py Mail.ipynb
-        ipynb-py-convert Mail.ipynb ActualMail.ipynb
+        ipynb-py-convert Mail.py ActualMail.ipynb
 
     # 4. Execute the Mail.ipynb notebook
     # If your email script requires passwords or API keys, inject them as environment variables here.
