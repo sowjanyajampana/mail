@@ -2,8 +2,8 @@ name: Run Birthday Email Bot
 
 
 on:
-  schedule:
-    - cron: '1 1 1 1 *'
+  #schedule:
+   # - cron: '1 1 1 1 *'
   workflow_dispatch: # Allows you to manually click "Run workflow" to test it instantly
     inputs:
       environment:
